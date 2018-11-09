@@ -24,7 +24,7 @@ class Calculator extends Component {
     
       render() {
         return (           
-          <div>
+          <div id = "CalculatorDiv">
           <h2>The conversion {this.props.convert} will be made on the rate from {this.props.date.toDateString()} with rate: {this.props.rate} </h2>
           <form onSubmit={this.handleSubmit}>
             <label>

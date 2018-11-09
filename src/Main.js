@@ -4,7 +4,7 @@ import Calculator from './Calculator';
 class Main extends Component {      
   render() { 
     return (      
-      <div>
+      <div id="MainDiv">
         <Calculator convert="USD->EUR" date={new Date()} rate={0.87618} />
       </div>
     );
