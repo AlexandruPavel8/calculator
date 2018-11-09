@@ -1,52 +1,57 @@
 import React, { Component } from 'react';
+import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import './Calculator.css';
+import Summary from './Summary';
 
 class Calculator extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          exchangeFrom: '',
-          exchangeTo: ''
-        };
+        this.state = {value: 1};
     
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
       }
     
       handleChange(event) {
-        this.setState({exchangeFrom: event.target.value});
+        this.setState({value: event.target.value});
       }
     
-      handleSubmit(event) {
-        alert('A currency was submitted: ' + this.state.exchangeFrom);
-        alert('A currency was submitted: ' + this.state.exchangeTo);
-        event.preventDefault();
-      }
     
       render() {
-        return (           
-          <div id = "CalculatorDiv">
-          <h2>The conversion {this.props.convert} will be made on the rate from {this.props.date.toDateString()} with rate: {this.props.rate} </h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Exchange Currency From:
-              <select name="exchangeFrom" value={this.state.exchangeFrom} onChange={this.handleChange} >
-                <option value="USD" selected="selected">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="RON">RON</option>
-            </select>
-            </label>
-            <br></br>
-            <label>
-              Exchange Currency To:
-              <select name="exchangeTo" value={this.state.exchangeTo} onChange={this.handleChange} >
-                <option value="USD">USD</option>
-                <option value="EUR" selected="selected">EUR</option>
-                <option value="RON">RON</option>
-            </select>
-            </label>
-            <br></br>
-            <input type="submit" value="Convert" />
-          </form>
+        return (
+          <div id="CalculatorAndSummaryDiv" className="calculatorAndSummaryStyle">
+          
+            <div id = "CalculatorDiv" className="calculatorStyle">
+                <h3>Enter here the data for the conversion:</h3>
+                <br/>
+                <form >
+                <FormGroup controlId="exchangeFormGroup">
+                        <ControlLabel>The conversion will be:</ControlLabel>
+                        <FormControl readOnly
+                            type="text"
+                            value={this.props.convert}
+                        />
+
+                        <ControlLabel>The conversion rate is:</ControlLabel>
+                        <FormControl readOnly
+                            type="text"
+                            value={this.props.rate} 
+                        />
+
+                        <ControlLabel>Enter amount to convert</ControlLabel>
+                        <FormControl
+                            type="number"
+                            value={this.state.value}
+                            placeholder="Enter amount to convert"
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                </form>
+            </div>
+            <div className="summaryStyle">
+            <h3>The conversion has the following results</h3>
+            <br/>
+            <Summary amount={this.state.value} rate={this.props.rate} currencies={this.props.convert} date={this.props.date} />
+            </div>
           </div>
         );
       }

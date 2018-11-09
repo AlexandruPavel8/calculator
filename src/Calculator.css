@@ -1,0 +1,16 @@
+.calculatorAndSummaryStyle {
+    width: 80%;
+    border-style: double;
+  }
+  .calculatorStyle {
+    float:left;
+    width: 50%;
+    background-color: lightblue;
+    border-style: double;
+  }
+  .summaryStyle {
+    float:right;
+    width: 50%;
+    background-color: lightblue;
+    border-style: double;
+  }
