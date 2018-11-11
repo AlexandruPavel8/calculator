@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 class Summary extends Component {
   render() {
     const conversionAmount = this.props.rate * this.props.amount;
@@ -13,5 +13,13 @@ class Summary extends Component {
     );
   }
 }
+
+Summary.propTypes=
+      {
+        amount: PropTypes.number,
+        rate: PropTypes.number,
+        conversionFromTo: PropTypes.string,
+        date: PropTypes.instanceOf(Date)
+      };
 
 export default Summary;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import './Calculator.css';
 import Summary from './Summary';
@@ -14,9 +15,9 @@ class Calculator extends Component {
       handleChange(event) {
         this.setState({value: event.target.value});
       }
-    
-    
+
       render() {
+          const {conversionFromTo, date, rate} = this.props
         return (
           <div id="CalculatorAndSummaryDiv" className="calculatorAndSummaryStyle">
           
@@ -28,13 +29,13 @@ class Calculator extends Component {
                         <ControlLabel>The conversion will be:</ControlLabel>
                         <FormControl readOnly
                             type="text"
-                            value={this.props.conversionFromTo}
+                            value={conversionFromTo}
                         />
 
                         <ControlLabel>The conversion rate is:</ControlLabel>
                         <FormControl readOnly
                             type="text"
-                            value={this.props.rate} 
+                            value={rate} 
                         />
 
                         <ControlLabel>Enter amount to convert</ControlLabel>
@@ -51,11 +52,18 @@ class Calculator extends Component {
             <div className="summaryStyle">
             <h3>The conversion has the following results</h3>
             <br/>
-            <Summary amount={this.state.value} rate={this.props.rate} conversionFromTo={this.props.conversionFromTo} date={this.props.date} />
+            <Summary amount={this.state.value} rate={rate} conversionFromTo={this.props.conversionFromTo} date={date} />
             </div>
           </div>
         );
       }
 }
+
+Calculator.propTypes=
+      {
+        conversionFromTo: PropTypes.string,
+        rate: PropTypes.number,
+        date: PropTypes.instanceOf(Date)
+      };
 
 export default Calculator;
