@@ -5,12 +5,12 @@
   .calculatorStyle {
     float:left;
     width: 50%;
-    background-color: lightblue;
+    background-color: #a8c6f4;
     border-style: double;
   }
   .summaryStyle {
     float:right;
     width: 50%;
-    background-color: lightblue;
+    background-color: #a8c6f4;
     border-style: double;
   }

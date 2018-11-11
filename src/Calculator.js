@@ -28,7 +28,7 @@ class Calculator extends Component {
                         <ControlLabel>The conversion will be:</ControlLabel>
                         <FormControl readOnly
                             type="text"
-                            value={this.props.convert}
+                            value={this.props.conversionFromTo}
                         />
 
                         <ControlLabel>The conversion rate is:</ControlLabel>
@@ -47,10 +47,11 @@ class Calculator extends Component {
                     </FormGroup>
                 </form>
             </div>
+            
             <div className="summaryStyle">
             <h3>The conversion has the following results</h3>
             <br/>
-            <Summary amount={this.state.value} rate={this.props.rate} currencies={this.props.convert} date={this.props.date} />
+            <Summary amount={this.state.value} rate={this.props.rate} conversionFromTo={this.props.conversionFromTo} date={this.props.date} />
             </div>
           </div>
         );
