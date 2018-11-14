@@ -4,7 +4,7 @@ class Header extends Component {
   render() {
     return (
       <div id = "HeaderDiv">
-        <h2 align="left">Exchange Calculator</h2>      
+        <h2 align="left">Real-Time Exchange Calculator</h2>      
       </div>
     );
   }

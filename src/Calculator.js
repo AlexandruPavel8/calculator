@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import './Calculator.css';
 import Summary from './Summary';
@@ -7,17 +6,31 @@ import Summary from './Summary';
 class Calculator extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: 1};
+        this.state = {
+            amountFrom: 0,
+            currencyTo: "USD",
+            rate: 0,
+            date: "2018-11-14"
+        };
     
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeAmount = this.handleChangeAmount.bind(this);
+        this.handleChangeCurrencyTo = this.handleChangeCurrencyTo.bind(this);
       }
-    
-      handleChange(event) {
-        this.setState({value: event.target.value});
+
+      handleChangeAmount = async (event) => {
+        this.setState({amountFrom: parseFloat(event.target.value)});
+        const response = await fetch('http://data.fixer.io/api/latest?access_key='+process.env.REACT_APP_FIXER_API_KEY+'&base=EUR&symbols='+this.state.currencyTo);
+        const exchangeDate =  await response.json();
+        this.setState({rate: Object.values(exchangeDate.rates)[0]});
+        this.setState({date: exchangeDate.date});
+      }
+
+      handleChangeCurrencyTo(event) {
+        this.setState({currencyTo: event.target.value});
+        this.setState({amountFrom: 0});
       }
 
       render() {
-          const {conversionFromTo, date, rate} = this.props
         return (
           <div id="CalculatorAndSummaryDiv" className="calculatorAndSummaryStyle">
           
@@ -26,44 +39,38 @@ class Calculator extends Component {
                 <br/>
                 <form >
                 <FormGroup controlId="exchangeFormGroup">
-                        <ControlLabel>The conversion will be:</ControlLabel>
-                        <FormControl readOnly
-                            type="text"
-                            value={conversionFromTo}
-                        />
-
-                        <ControlLabel>The conversion rate is:</ControlLabel>
-                        <FormControl readOnly
-                            type="text"
-                            value={rate} 
-                        />
+                        <ControlLabel>Convert From Currency:</ControlLabel>
+                        <FormControl componentClass="select" placeholder="select" readOnly>
+                            <option value="EUR">EUR</option>
+                        </FormControl>
+                        
+                        <ControlLabel>Convert To Currency:</ControlLabel>
+                        <FormControl componentClass="select" placeholder="select" onChange={this.handleChangeCurrencyTo}>
+                            <option value="USD">USD</option>
+                            <option value="RON">RON</option>
+                        </FormControl>
 
                         <ControlLabel>Enter amount to convert</ControlLabel>
                         <FormControl
                             type="number"
-                            value={this.state.value}
+                            min="0"
+                            value={this.state.amountFrom}
                             placeholder="Enter amount to convert"
-                            onChange={this.handleChange}
+                            onChange={this.handleChangeAmount}
                         />
                     </FormGroup>
                 </form>
             </div>
-            
+
             <div className="summaryStyle">
-            <h3>The conversion has the following results</h3>
+            <h6>Enter in the field "Enter amount to convert" a value greater then zero</h6>
             <br/>
-            <Summary amount={this.state.value} rate={rate} conversionFromTo={this.props.conversionFromTo} date={date} />
+            <Summary currencyFrom="EUR" currencyTo={this.state.currencyTo} amountFrom={this.state.amountFrom} rate={this.state.rate} date={this.state.date}/>
             </div>
+            
           </div>
         );
       }
 }
-
-Calculator.propTypes=
-      {
-        conversionFromTo: PropTypes.string,
-        rate: PropTypes.number,
-        date: PropTypes.instanceOf(Date)
-      };
 
 export default Calculator;

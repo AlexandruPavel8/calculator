@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 class Summary extends Component {
   render() {
-    const conversionAmount = this.props.rate * this.props.amount;
-    const conversionCurrency = this.props.conversionFromTo.split("->");
-    return (
-      <div id = "SummaryDiv">
-        <h4 align="center">{this.props.amount} {conversionCurrency[0]} is equal to {conversionAmount} {conversionCurrency[1]}</h4>      
-        <br/>
-        <h6 align="left">Conversion date is {this.props.date.toDateString()}</h6>      
-      </div>
-    );
+    if (this.props.amountFrom > 0) {
+    const amountTo = (this.props.amountFrom * this.props.rate).toFixed(2);
+      return (
+        <div id="SummaryDiv">
+          <h4 align="center">
+            {this.props.amountFrom} {this.props.currencyFrom} is equal to{" "}
+            {amountTo} {this.props.currencyTo}
+          </h4>
+          <br />
+          <h6 align="left">Conversion date is {this.props.date}</h6>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
-Summary.propTypes=
-      {
-        amount: PropTypes.number,
-        rate: PropTypes.number,
-        conversionFromTo: PropTypes.string,
-        date: PropTypes.instanceOf(Date)
-      };
+Summary.propTypes = {
+  currencyFrom: PropTypes.string,
+  currencyTo: PropTypes.string,
+  amountFrom: PropTypes.number,
+  rate: PropTypes.number,
+  date: PropTypes.string
+};
 
 export default Summary;

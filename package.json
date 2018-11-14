@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "google-currency": "^1.0.7",
+    "nodejs-currency-converter": "^1.0.2",
     "react": "^16.6.1",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.1",
