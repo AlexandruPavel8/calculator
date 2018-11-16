@@ -25,7 +25,6 @@ Label.propTypes=
     labelText: PropTypes.string.isRequired,
     fontSize:  PropTypes.number,
     fontFamily: PropTypes.string,
-    labelText: PropTypes.string,
     fontWeight: PropTypes.string,
     color: PropTypes.string,
     textAlign: PropTypes.string,
