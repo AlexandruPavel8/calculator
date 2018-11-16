@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import Label from './Label';
 import './Calculator.css';
 import Summary from './Summary';
 
@@ -35,22 +36,24 @@ class Calculator extends Component {
           <div id="CalculatorAndSummaryDiv" className="calculatorAndSummaryStyle">
           
             <div id = "CalculatorDiv" className="calculatorStyle">
-                <h3>Enter here the data for the conversion:</h3>
-                <br/>
+                
+                <Label labelText="Enter here the data for the conversion:" fontSize = {20} fontFamily="Times New Roman" color="black" textAlign="left" float="left"/>
+                <br/><br/>
+
                 <form >
                 <FormGroup controlId="exchangeFormGroup">
-                        <ControlLabel>Convert From Currency:</ControlLabel>
+                        <Label labelText="Convert From Currency:" fontSize = {15} fontFamily="Times New Roman" color="black" textAlign="left" float="left"/>
                         <FormControl componentClass="select" placeholder="select" readOnly>
                             <option value="EUR">EUR</option>
                         </FormControl>
                         
-                        <ControlLabel>Convert To Currency:</ControlLabel>
+                        <Label labelText="Convert To Currency:" fontSize = {15} fontFamily="Times New Roman" color="black" textAlign="left" float="left"/>
                         <FormControl componentClass="select" placeholder="select" onChange={this.handleChangeCurrencyTo}>
                             <option value="USD">USD</option>
                             <option value="RON">RON</option>
                         </FormControl>
 
-                        <ControlLabel>Enter amount to convert</ControlLabel>
+                        <Label labelText="Enter amount to convert" fontSize = {15} fontFamily="Times New Roman" fontWeight="bold" color="black" textAlign="left" float="left"/>
                         <FormControl
                             type="number"
                             min="0"
@@ -63,7 +66,14 @@ class Calculator extends Component {
             </div>
 
             <div className="summaryStyle">
-            <h6>Enter in the field "Enter amount to convert" a value greater then zero</h6>
+            <Label 
+                labelText="Enter in the field Enter amount to convert a value greater then zero" 
+                fontSize = {20} 
+                fontFamily="Times New Roman" 
+                color="black" 
+                textAlign="left" 
+                float="left"
+            />
             <br/>
             <Summary currencyFrom="EUR" currencyTo={this.state.currencyTo} amountFrom={this.state.amountFrom} rate={this.state.rate} date={this.state.date}/>
             </div>
