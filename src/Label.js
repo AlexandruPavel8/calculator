@@ -1,22 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 
-class Label extends Component {
-  render() {
-      var labelStyle=
-      {
-          fontSize: this.props.fontSize,
-          fontFamily: this.props.fontFamily,
-          fontWeight: this.props.fontWeight,
-          textAlign: this.props.textAlign,
-          color: this.props.color,
-          float: this.props.float  
-      }
+const Label = ({labelText, fontSize, fontFamily, fontWeight, textAlign, color, float}) =>{
+    
+    var labelStyle=
+        {
+        fontSize: fontSize,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+        textAlign: textAlign,
+        color: color,
+        float: float  
+        }
+    
     return (
       <div>
-         <label style={labelStyle}>{this.props.labelText}</label>
+         <label style={labelStyle}>{labelText}</label>
       </div>
     );
   }
-}
 
+Label.propTypes=
+{
+    labelText: PropTypes.string.isRequired,
+    fontSize:  PropTypes.number,
+    fontFamily: PropTypes.string,
+    labelText: PropTypes.string,
+    fontWeight: PropTypes.string,
+    color: PropTypes.string,
+    textAlign: PropTypes.string,
+    float: PropTypes.string
+
+}
+Label.defaultProps =
+{
+      labelText:"One forgot to set the Label here ! Please Add a Label-Text!",  
+      fontSize:25,
+      fontFamily:"Times New Roman",
+      fontWeight:"normal",
+      color:"black",
+      textAlign:"left" ,
+      float:"left"
+};
+  
 export default Label;
+

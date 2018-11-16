@@ -37,26 +37,14 @@ class Calculator extends Component {
           
             <div id = "CalculatorDiv" className="calculatorStyle">
                 
-                <Label 
-                    labelText="Enter here the data for the conversion:" 
-                    fontSize = {20} 
-                    fontFamily="Times New Roman" 
-                    color="black" 
-                    textAlign="left" 
-                    float="left"
-                />
-                
+                <Label labelText="Enter here the data for the conversion:" fontSize = {20}/>
                 <br/><br/>
-
+                
                 <form >
                 <FormGroup controlId="exchangeFormGroup">
                         <Label 
                             labelText="Convert From Currency:" 
                             fontSize = {15} 
-                            fontFamily="Times New Roman" 
-                            color="black" 
-                            textAlign="left" 
-                            float="left"
                         />
                         <FormControl 
                             componentClass="select" 
@@ -68,10 +56,6 @@ class Calculator extends Component {
                         <Label 
                             labelText="Convert To Currency:" 
                             fontSize = {15} 
-                            fontFamily="Times New Roman" 
-                            color="black" 
-                            textAlign="left" 
-                            float="left"
                         />
                         <FormControl 
                             componentClass="select" 
@@ -84,11 +68,7 @@ class Calculator extends Component {
                         <Label 
                             labelText="Enter amount to convert" 
                             fontSize = {15} 
-                            fontFamily="Times New Roman" 
                             fontWeight="bold" 
-                            color="black" 
-                            textAlign="left" 
-                            float="left"
                         />
                         <FormControl
                             type="number"
@@ -105,10 +85,6 @@ class Calculator extends Component {
             <Label 
                 labelText="Enter in the field Enter amount to convert a value greater then zero" 
                 fontSize = {20} 
-                fontFamily="Times New Roman" 
-                color="black" 
-                textAlign="left" 
-                float="left"
             />
             <br/>
             <Summary 
