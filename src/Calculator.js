@@ -37,23 +37,59 @@ class Calculator extends Component {
           
             <div id = "CalculatorDiv" className="calculatorStyle">
                 
-                <Label labelText="Enter here the data for the conversion:" fontSize = {20} fontFamily="Times New Roman" color="black" textAlign="left" float="left"/>
+                <Label 
+                    labelText="Enter here the data for the conversion:" 
+                    fontSize = {20} 
+                    fontFamily="Times New Roman" 
+                    color="black" 
+                    textAlign="left" 
+                    float="left"
+                />
+                
                 <br/><br/>
 
                 <form >
                 <FormGroup controlId="exchangeFormGroup">
-                        <Label labelText="Convert From Currency:" fontSize = {15} fontFamily="Times New Roman" color="black" textAlign="left" float="left"/>
-                        <FormControl componentClass="select" placeholder="select" readOnly>
-                            <option value="EUR">EUR</option>
+                        <Label 
+                            labelText="Convert From Currency:" 
+                            fontSize = {15} 
+                            fontFamily="Times New Roman" 
+                            color="black" 
+                            textAlign="left" 
+                            float="left"
+                        />
+                        <FormControl 
+                            componentClass="select" 
+                            placeholder="select" 
+                            readOnly>
+                                <option value="EUR">EUR</option>
                         </FormControl>
                         
-                        <Label labelText="Convert To Currency:" fontSize = {15} fontFamily="Times New Roman" color="black" textAlign="left" float="left"/>
-                        <FormControl componentClass="select" placeholder="select" onChange={this.handleChangeCurrencyTo}>
-                            <option value="USD">USD</option>
-                            <option value="RON">RON</option>
+                        <Label 
+                            labelText="Convert To Currency:" 
+                            fontSize = {15} 
+                            fontFamily="Times New Roman" 
+                            color="black" 
+                            textAlign="left" 
+                            float="left"
+                        />
+                        <FormControl 
+                            componentClass="select" 
+                            placeholder="select" 
+                            onChange={this.handleChangeCurrencyTo}>
+                                <option value="USD">USD</option>
+                                <option value="RON">RON</option>
                         </FormControl>
 
-                        <Label labelText="Enter amount to convert" fontSize = {15} fontFamily="Times New Roman" fontWeight="bold" color="black" textAlign="left" float="left"/>
+                        <Label 
+                            labelText="Enter amount to convert" 
+                            fontSize = {15} 
+                            fontFamily="Times New Roman" 
+                            fontWeight="bold" 
+                            color="black" 
+                            textAlign="left" 
+                            float="left"
+                        />
                         <FormControl
                             type="number"
                             min="0"
@@ -75,7 +111,13 @@ class Calculator extends Component {
                 float="left"
             />
             <br/>
-            <Summary currencyFrom="EUR" currencyTo={this.state.currencyTo} amountFrom={this.state.amountFrom} rate={this.state.rate} date={this.state.date}/>
+            <Summary 
+                currencyFrom="EUR" 
+                currencyTo={this.state.currencyTo} 
+                amountFrom={this.state.amountFrom} 
+                rate={this.state.rate} 
+                date={this.state.date}
+            />
             </div>
             
           </div>
